@@ -51,6 +51,7 @@ The following features have been added:
 * Responsive design for desktop, tablet, and mobile devices
 * Reading and displaying discussions and comments through JSON (axios)
 * "React Swiper" Image gallery with swipe functionality and image modal - https://swiperjs.com/react
+* Includes Bootstrap, React Bootstrap and MUI
 * Bookmark functionality using Context API: Bookmarking discussions and updating the total number of bookmarks in the header
 * Add new comments with basic validation for title and content
 * Upvoting discussions and comments with a toggle functionality
