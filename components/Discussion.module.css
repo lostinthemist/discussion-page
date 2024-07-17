@@ -1,0 +1,178 @@
+.discussion_item {
+    padding: 20px 30px;
+    border: 1px solid #807979;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    width: 100%;
+    height: auto;
+    background: rgb(255 255 255 / 75%);
+    backdrop-filter: blur(10px);
+}
+
+.add_comment {
+    padding: 15px 30px;
+}
+
+.add_comment div {
+    margin-bottom: 1rem;
+}
+
+.discussion_user {
+    display: flex;
+    align-items: center;
+    margin: 10px 0 20px 0;
+    gap: 15px;
+}
+
+.category {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-weight: bold;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.discussion_user_info {
+    display: flex;
+    flex-direction: column;
+}
+
+.discussion_content {
+    width: 100%;
+    position: relative;
+}
+
+.discussion_row {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.nick_name {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.skin_type {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 5px 10px;
+}
+
+.avatar_img {
+    border: 2px solid #252525;
+}
+
+.discussion_btn_group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.discussion_btn_group img {
+    margin-right: 8px;
+}
+
+.upvotes {
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 6px 12px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #e6e4e4;
+    transition: 0.15s ease-in-out;
+}
+
+.upvotes:hover {
+    background-color: #e7dfdf;
+}
+
+.comment_btn {
+    background-color: #e7dfdf !important;
+}
+
+.comment_btn:hover,
+.comment_btn:active {
+    box-shadow: 0 0 10px 3px #a3a0a0;
+    background-color: #fff !important;
+}
+
+.comments {
+    margin-top: 1rem;
+    background: rgb(255 255 255 / 90%);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+}
+
+.toggleIcon {
+    margin-top: 1rem;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 5px 10px;
+    margin-left: auto;
+    transition: 0.2s ease-in-out;
+}
+
+.toggleIcon:hover {
+    cursor: pointer;
+}
+
+.toggleIcon img {
+    margin-right: 0;
+}
+
+.favorite_btn {
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 5px 10px;
+    margin-left: auto;
+    transition: 0.2s ease-in-out;
+    border: 2px solid transparent;
+}
+
+.favorite_btn:hover {
+    background-color: #e6e4e4;
+}
+
+.bookmarked,
+.bookmarked:focus {
+    border: 2px solid #ce7474;
+}
+
+.add_comment_btn {
+    background-color: #ce7474;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 6px 25px;
+}
+
+.add_comment_btn:hover, .add_comment_btn:active {
+    background-color: #b35f5f;
+    color: #fff;
+}
+
+@media screen and (max-width: 767.5px) {
+    .discussion_item {
+        padding: 20px 15px;
+    }
+
+    .discussion_btn_group {
+        margin-top: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .add_comment {
+        padding: 10px 15px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .discussion_row {
+        gap: 10px;
+    }
+}

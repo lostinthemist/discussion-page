@@ -1,0 +1,44 @@
+.gallery_swiper {
+    width: 100%;
+    margin: 20px 0;
+    padding: 15px 0;
+}
+
+.galleryItem:hover {
+    cursor: pointer;
+}
+.galleryItem {
+    position: relative;
+    padding: 10px;
+}
+.galleryItem img {
+    position: relative !important;
+    border-radius: 10px;
+    transition: 0.2s ease-in-out;
+}
+
+.galleryItem:hover img {
+    border-radius: 25px;
+    box-shadow: 0 0 10px 4px #ababab;
+}
+
+.close_btn {
+    position: absolute;
+    right: 0;
+    top: -10%;
+    background-color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 767.5px) {
+    .galleryItem {
+        padding: 5px;
+    }
+}

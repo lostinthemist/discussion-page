@@ -1,0 +1,46 @@
+.sidepanel {
+    width: 250px;
+    height: min-content;
+    padding: 15px 20px;
+    border: 1px solid #807979;
+    border-radius: 5px;
+    margin-right: 30px;
+    background: rgb(255 255 255 / 75%);
+    backdrop-filter: blur(10px);
+}
+
+.sidepanel_ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.btn_link {
+    text-decoration: none !important;
+    color: #252525 !important;
+    transition: 0.2s ease-in-out;
+    padding-left: 0;
+}
+
+.btn_link:hover {
+    color: #000 !important;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 576px) {
+    .sidepanel {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .sidepanel {
+        margin-bottom: 1rem;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+    .sidepanel {
+        margin-right: 10px;
+    }
+}

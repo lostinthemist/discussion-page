@@ -1,0 +1,35 @@
+.comment {
+    padding: 20px 30px;
+}
+
+.comment_image {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.comment_content {
+    margin-bottom: 1rem;
+}
+
+.replies .comment {
+    padding: 5px 15px;
+}
+
+.replies_desc {
+    margin-bottom: 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.skin_type {
+    background-color: #e7dfdf;
+    border-radius: 20px;
+    padding: 5px 10px;
+}
+
+@media screen and (max-width: 767.5px) {
+    .comment {
+        padding: 10px 15px;
+    }
+}
