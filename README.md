@@ -48,13 +48,13 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Additional information about the discussion application.
 The following features have been added:
-    - Responsive design for desktop, tablet, and mobile devices
-    - Reading and displaying discussions and comments through JSON (axios)
-    - "React Swiper" Image gallery with swipe functionality and image modal - https://swiperjs.com/react
-    - Bookmark functionality using Context API: Bookmarking discussions and updating the total number of bookmarks in the header
-    - Add new comments with basic validation for title and content
-    - Upvoting discussions and comments with a toggle functionality
-    - Collapsing/expanding comments section: Collapse icon also added to the bottom of comments
-    - Utilized Next.js features such as Server-Side Rendering, Layout component, Next Image, Next Head. 
-    - Typescript types for discussion and comments in types/index.d.ts
-    - utils folder includes some reusable functions such as formatting date and fetching icon image
+* Responsive design for desktop, tablet, and mobile devices
+* Reading and displaying discussions and comments through JSON (axios)
+* "React Swiper" Image gallery with swipe functionality and image modal - https://swiperjs.com/react
+* Bookmark functionality using Context API: Bookmarking discussions and updating the total number of bookmarks in the header
+* Add new comments with basic validation for title and content
+* Upvoting discussions and comments with a toggle functionality
+* Collapsing/expanding comments section: Collapse icon also added to the bottom of comments
+* Utilized Next.js features such as Server-Side Rendering, Layout component, Next Image, Next Head. 
+* Typescript types for discussion and comments in types/index.d.ts
+* utils folder includes some reusable functions such as formatting date and fetching icon image
