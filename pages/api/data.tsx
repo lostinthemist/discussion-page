@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import discussionData from '../../data/discussion.json';
-import commentsData from '../../data/comments.json';
+import discussionData from '../../public/discussion.json';
+import commentsData from '../../public/comments.json';
 import { Discussion, Comment } from '../../types';
 
 interface DataResponse {
