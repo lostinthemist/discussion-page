@@ -11,7 +11,6 @@ export interface Category {
 }
 
 export interface Discussion {
-    map(arg0: (discussion: any) => any): unknown;
     id: number;
     title: string;
     content: string;
@@ -22,10 +21,13 @@ export interface Discussion {
     category: Category;
     user: User;
     createdAt: string;
+    comments: Comment[]; 
+    discussionId?: number;
 }
 
 export interface Comment {
     id: number;
+    discussionId: number;
     content: string;
     image_urls: string[];
     viewCount: number;
@@ -34,5 +36,5 @@ export interface Comment {
     category: Category;
     user: User;
     createdAt: string;
-    replies?: Comment[];
+    replies: Reply[];
 }

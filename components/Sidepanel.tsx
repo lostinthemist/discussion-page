@@ -3,19 +3,43 @@ import { Discussion as DiscussionType } from '../types';
 import sidePanelClasses from './Sidepanel.module.css';
 import { Button } from 'react-bootstrap';
 
-interface DiscussionProps {
-    discussion: DiscussionType;
+interface SidePanelProps {
+    discussions: DiscussionType[];
+    selectedCategory: string | null;
+    setSelectedCategory: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-const SidePanel: React.FC<DiscussionProps> = ({ discussion }) => {
+const SidePanel: React.FC<SidePanelProps> = ({ discussions, selectedCategory, setSelectedCategory }) => {
     const renderCategories = () => {
-        const categories: string[] = Array.from([discussion]).map((discussion: any) => discussion.category.label);
+        const categories = discussions.map((discussion) => discussion.category.label);
         const uniqueCategories = Array.from(new Set(categories));
-        return uniqueCategories.map((category, index) => (
-            <li key={index}>
-                <Button className={sidePanelClasses.btn_link} variant="link">{category}</Button>
-            </li>
-        ));
+
+        return (
+            <>
+                {uniqueCategories.length > 1 && (
+                    <li key="all-categories">
+                        <Button
+                            className={`${sidePanelClasses.btn_link} ${!selectedCategory ? 'active' : ''}`}
+                            variant="link"
+                            onClick={() => setSelectedCategory(null)}
+                        >
+                            All Categories
+                        </Button>
+                    </li>
+                )}
+                {uniqueCategories.map((category) => (
+                    <li key={category}>
+                        <Button
+                            className={`${sidePanelClasses.btn_link} ${selectedCategory === category ? sidePanelClasses.active : ''}`}
+                            variant="link"
+                            onClick={() => setSelectedCategory(selectedCategory === category ? null : category)}
+                        >
+                            {category}
+                        </Button>
+                    </li>
+                ))}
+            </>
+        );
     };
 
     return (

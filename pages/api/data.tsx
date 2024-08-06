@@ -11,6 +11,6 @@ interface DataResponse {
 export default function handler(req: NextApiRequest, res: NextApiResponse<DataResponse>) {
   res.status(200).json({
     discussion: discussionData as Discussion,
-    comments: commentsData as Comment[], // No need to modify commentsData now
+    comments: commentsData as Comment[], 
   });
 }

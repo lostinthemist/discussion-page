@@ -3,19 +3,36 @@ import Discussion from '../components/Discussion';
 import { GetServerSideProps } from 'next';
 import { Discussion as DiscussionType, Comment as CommentType } from '../types';
 import SidePanel from '@/components/Sidepanel';
+import React, { useState } from 'react';
 
 interface HomeProps {
-    discussion: DiscussionType;
-    comments: CommentType[];
+    initialDiscussions: DiscussionType[];
+    initialComments: CommentType[];
 }
 
-const Home: React.FC<HomeProps> = ({ discussion, comments }) => {
+const Home: React.FC<HomeProps> = ({ initialDiscussions, initialComments }) => {
+    const [discussions, setDiscussions] = useState<DiscussionType[]>(initialDiscussions);
+    const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+    const handleAddDiscussion = (newDiscussion: DiscussionType) => {
+        setDiscussions(prevDiscussions => [...prevDiscussions, newDiscussion]);
+    };
+
     return (
         <div className='container-fluid container-lg'>
             <h1 className='mt-3 mb-lg-3 mb-lg-5'>Discussion page</h1>
             <section className='d-flex flex-column flex-lg-row'>
-                <SidePanel discussion={discussion} />
-                <Discussion discussion={discussion} initialComments={comments} />
+                <SidePanel
+                    discussions={discussions}
+                    selectedCategory={selectedCategory}
+                    setSelectedCategory={setSelectedCategory}
+                />
+                <Discussion
+                    discussions={discussions}
+                    initialComments={initialComments}
+                    onAddDiscussion={handleAddDiscussion}
+                    selectedCategory={selectedCategory}
+                />
             </section>
         </div>
     );
@@ -27,8 +44,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
     return {
         props: {
-            discussion: data.discussion,
-            comments: data.comments,
+            initialDiscussions: [data.discussion],
+            initialComments: data.comments,
         },
     };
 };

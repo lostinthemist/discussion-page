@@ -3,6 +3,7 @@ import Head from 'next/head';
 import '../styles/globals.css';
 import Layout from '@/components/Layout';
 import { BookmarkProvider } from '@/context/BookmarkContext';
+import { AddDiscussionProvider } from '@/context/AddDiscussionContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -14,11 +15,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="description" content="Users can use this application to share information about different topics." />
         <meta name="keywords" content="Discussion app"></meta>
       </Head>
-      <BookmarkProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </BookmarkProvider>
+      <AddDiscussionProvider>
+        <BookmarkProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </BookmarkProvider>
+      </AddDiscussionProvider>
     </>
   )
 }

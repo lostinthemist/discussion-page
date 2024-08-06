@@ -7,7 +7,7 @@ import { formatDate } from '../utils/dateUtils';
 import Divider from '@mui/material/Divider';
 import Image from 'next/image';
 import { getIconPath } from '@/utils/iconUtils';
-import { Button, Collapse } from 'react-bootstrap';
+import { Button, Collapse, Form, Alert } from 'react-bootstrap';
 
 interface CommentProps {
   comment: CommentType;
@@ -16,7 +16,11 @@ interface CommentProps {
 const Comment: React.FC<CommentProps> = ({ comment }) => {
   const [open, setOpen] = useState(false);
   const [upvoted, setUpvoted] = useState<boolean>(false);
-  const hasReplies = comment.replies && comment.replies.length > 0;
+  const [showAddReply, setShowAddReply] = useState(false);
+  const [newReply, setNewReply] = useState({ content: '', image_urls: '' });
+  const [validationError, setValidationError] = useState<string | null>(null);
+  const [replies, setReplies] = useState<CommentType[]>(comment.replies || []);
+  const [replyCount, setReplyCount] = useState<number>(replies.length);
 
   const handleUpvoteClick = () => {
     setUpvoted(!upvoted);
@@ -26,6 +30,57 @@ const Comment: React.FC<CommentProps> = ({ comment }) => {
       comment.upvoteCount -= 1;
     }
   };
+
+  const handleAddReplyClick = () => {
+    setShowAddReply(prevShowAddReply => {
+      if (prevShowAddReply) {
+        setNewReply({ content: '', image_urls: '' }); 
+      }
+      return !prevShowAddReply;
+    });
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setNewReply(prevState => ({ ...prevState, [name]: value }));
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!newReply.content) {
+      setValidationError('Content is a required field.');
+      return;
+    }
+
+    const newReplyData: CommentType = {
+      id: Math.max(0, ...replies.map(reply => reply.id)) + 1,
+      discussionId: comment.discussionId, 
+      content: newReply.content,
+      image_urls: newReply.image_urls.split(',').map(url => url.trim()).filter(url => url),
+      viewCount: 0,
+      upvoteCount: 0,
+      commentCount: 0,
+      category: comment.category,
+      user: {
+        id: 44,
+        image_url: 'https://picky-app.s3-ap-southeast-1.amazonaws.com/users/44444.202141131010.jpg',
+        nick_name: 'Squad Current User',
+        skin_type: 'Smooth'
+      },
+      createdAt: new Date().toISOString(),
+      replies: []
+    };
+
+    setReplies(prevReplies => [...prevReplies, newReplyData]);
+    setReplyCount(prevCount => prevCount + 1);
+
+    setNewReply({ content: '', image_urls: '' });
+    setShowAddReply(false);
+    setValidationError(null);
+  };
+
+  const hasReplies = replies.length > 0;
 
   return (
     <>
@@ -60,6 +115,10 @@ const Comment: React.FC<CommentProps> = ({ comment }) => {
                 width={16}
                 height={16}
               />{comment.upvoteCount} upvotes</Button>
+            <Button
+              variant="light"
+              className={discussionClasses.comment_btn}
+              onClick={handleAddReplyClick}>{showAddReply ? "Cancel reply" : "Add reply"}</Button>
             {hasReplies ? (
               <Button
                 variant="light"
@@ -69,10 +128,10 @@ const Comment: React.FC<CommentProps> = ({ comment }) => {
                 aria-expanded={open}>
                 <Image
                   src={getIconPath('icon-comment')}
-                  alt="Comment icon "
+                  alt="Comment icon"
                   width={16}
                   height={16}
-                />View comments ({comment.commentCount})</Button>
+                />View replies ({replyCount})</Button>
             ) : (
               <span className={discussionClasses.upvotes}>
                 <Image
@@ -80,17 +139,49 @@ const Comment: React.FC<CommentProps> = ({ comment }) => {
                   alt="Comment icon"
                   width={16}
                   height={16}
-                />No comments</span>
+                />No replies</span>
             )}
           </div>
-        </div >
+          <Collapse in={showAddReply}>
+            <div id="add-reply-collapse" className={discussionClasses.add_comment}>
+              <Form onSubmit={handleFormSubmit}>
+                {validationError && <Alert variant="danger">{validationError}</Alert>}
+                <Form.Group controlId="replyContent">
+                  <Form.Label>Content</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    placeholder='Write your reply here...'
+                    rows={3}
+                    name="content"
+                    value={newReply.content}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group controlId="replyImageUrls">
+                  <Form.Label>Image URLs (comma separated)</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="https://www..."
+                    name="image_urls"
+                    value={newReply.image_urls}
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+                <Button variant="light" type="submit" className={discussionClasses.add_comment_btn} >
+                  Submit
+                </Button>
+              </Form>
+            </div>
+          </Collapse>
+        </div>
         {
-          comment.replies && comment.replies.length > 0 && (
+          hasReplies && (
             <div className={commentClasses.replies}>
               <Collapse in={open}>
-                <div id="replies-collapse" >
+                <div id="replies-collapse">
                   <p className={commentClasses.replies_desc}>Replies:</p>
-                  {comment.replies.map(reply => (
+                  {replies.map(reply => (
                     <Comment key={reply.id} comment={reply} />
                   ))}
                 </div>
@@ -98,7 +189,7 @@ const Comment: React.FC<CommentProps> = ({ comment }) => {
             </div>
           )
         }
-      </div >
+      </div>
       <Divider />
     </>
   );

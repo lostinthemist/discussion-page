@@ -28,7 +28,7 @@ const Header: React.FC = () => {
 						<NavLink>products</NavLink>
 						<NavLink>curation</NavLink>
 						<NavLink>discussion</NavLink>
-						<NavLink>picky for creators</NavLink>
+						<NavLink>for creators</NavLink>
 						<div className={layoutClasses.navbar_last}>
 							<div className={layoutClasses.bookmark_area}>
 								{bookmarks.length > 0 && <span className={layoutClasses.bookmarks}>{bookmarks.length}</span>}

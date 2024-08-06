@@ -51,9 +51,9 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ imageUrls }) => {
             }}
             className={galleryStyles.gallery_swiper}>
             {imageUrls.map((url, index) => (
-                <SwiperSlide key={url}>
+                <SwiperSlide key={`${url}-${index}`}>
                     <div className={galleryStyles.galleryItem} onClick={() => handleImageClick(url)}>
-                        <Image src={url} alt={`Gallery image ${index + 1}`} fill={true} style={{objectFit: "contain"}} />
+                        <Image src={url} alt={`Gallery image ${index + 1}`} fill={true} style={{objectFit: "contain"}} priority={false}/>
                     </div>
                 </SwiperSlide>
             ))}
@@ -73,7 +73,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ imageUrls }) => {
                                 width={16}
                                 height={16}
                             /></Button>
-                        <Image className={galleryStyles.gallery_img} src={selectedImage} alt="Gallery image" layout="responsive" width={700} height={475} />
+                        <Image className={`${galleryStyles.gallery_img} position-relative`} src={selectedImage} alt="Gallery image" fill />
                     </>
                 )}
             </Modal.Body>
