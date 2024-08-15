@@ -39,17 +39,20 @@ const Home: React.FC<HomeProps> = ({ initialDiscussions, initialComments }) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
     try {
-        const baseUrl = process.env.VERCEL_URL
-            ? `https://${process.env.VERCEL_URL}`
-            : 'http://localhost:3000';
+        const discussionRes = await fetch('https://discussion-page.vercel.app/data/discussion.json');
+        const commentsRes = await fetch('https://discussion-page.vercel.app/data/comments.json');
 
-        const res = await fetch(`${baseUrl}/api/data`);
-        const data = await res.json();
+        if (!discussionRes.ok || !commentsRes.ok) {
+            throw new Error('Failed to fetch data');
+        }
+
+        const discussionData = await discussionRes.json();
+        const commentsData = await commentsRes.json();
 
         return {
             props: {
-                initialDiscussions: [data.discussion],
-                initialComments: data.comments,
+                initialDiscussions: [discussionData],
+                initialComments: commentsData,
             },
         };
     } catch (error) {
