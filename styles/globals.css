@@ -89,7 +89,7 @@ main {
 body {
   width: 100%;
   color: rgb(var(--foreground-rgb));
-  background-image: url('../public/images/mesh-99.png');
+  background-image: url('/images/mesh-99.png');
   background-size: cover;
 }
 
