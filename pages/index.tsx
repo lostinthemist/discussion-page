@@ -1,9 +1,8 @@
-import axios from 'axios';
 import Discussion from '../components/Discussion';
 import { GetServerSideProps } from 'next';
 import { Discussion as DiscussionType, Comment as CommentType } from '../types';
 import SidePanel from '@/components/Sidepanel';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface HomeProps {
     initialDiscussions: DiscussionType[];
@@ -13,10 +12,27 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({ initialDiscussions, initialComments }) => {
     const [discussions, setDiscussions] = useState<DiscussionType[]>(initialDiscussions);
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await fetch('http://localhost:3000/api/data');
+            const data = await res.json();
+
+            setDiscussions([data.discussion]);
+            setIsLoading(false);
+        };
+
+        fetchData();
+    }, []);
 
     const handleAddDiscussion = (newDiscussion: DiscussionType) => {
         setDiscussions(prevDiscussions => [...prevDiscussions, newDiscussion]);
     };
+
+    if (isLoading) {
+        return <div>Data loading...</div>;
+    }
 
     return (
         <div className='container-fluid container-lg'>
@@ -39,8 +55,8 @@ const Home: React.FC<HomeProps> = ({ initialDiscussions, initialComments }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const res = await axios.get('http://localhost:3000/api/data');
-    const data = res.data;
+    const res = await fetch('http://localhost:3000/api/data');
+    const data = await res.json();
 
     return {
         props: {
