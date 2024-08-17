@@ -99,7 +99,7 @@ a {
 }
 
 h1 {
-  color: #fff;
+  color: #fff !important;
 }
 
 @media (prefers-color-scheme: dark) {

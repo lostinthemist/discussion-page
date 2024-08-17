@@ -59,3 +59,6 @@ The following features have been added:
 * Utilized Next.js features such as Server-Side Rendering, Layout component, Next Image, Next Head. 
 * Typescript types for discussion and comments in types/index.d.ts
 * utils folder includes some reusable functions such as formatting date and fetching icon image
+* Add discussion feature
+* Dynamic sidebar list based on available categories
+* Discussions filtering feature based on category
