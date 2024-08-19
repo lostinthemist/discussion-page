@@ -3,10 +3,10 @@
   "title": "I was satisfied with these products",
   "content": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.",
   "image_urls": [
-    "https://picky-app.s3-ap-southeast-1.amazonaws.com/events/2021_02_super/210202_makeprem_0.jpg",
-    "https://picky-app.s3-ap-southeast-1.amazonaws.com/events/2021_02_super/210202_makeprem_0.jpg",
-    "https://picky-app.s3-ap-southeast-1.amazonaws.com/events/2021_02_super/210202_makeprem_0.jpg",
-    "https://picky-app.s3-ap-southeast-1.amazonaws.com/events/2021_02_super/210202_makeprem_0.jpg"
+    "https://media.gq-magazine.co.uk/photos/652ea7774dceaa143354e709/16:9/w_2240,c_limit/Korean-Skincare.jpeg",
+    "https://media.allure.com/photos/64d3b73adf214529dc7ce783/16:9/w_3488,h_1962,c_limit/8-09-k-beauty-for-acne.jpg",
+    "https://media.glamourmagazine.co.uk/photos/651be3e607b726a3ee5c7011/16:9/w_2580,c_limit/korean%20skincare%2012.1k%20031023%204%20COPY_L.jpg",
+    "https://media.theeverygirl.com/wp-content/uploads/2023/07/Snapinsta.app_187257199_156638093015104_599403244592551209_n_1080-e1689096287294.jpg"
   ],
   "viewCount": 2053,
   "upvoteCount": 353,
@@ -17,7 +17,7 @@
   },
   "user": {
     "id": 44444,
-    "image_url": "https://picky-app.s3-ap-southeast-1.amazonaws.com/users/44444.202141131010.jpg",
+    "image_url": "https://media.allure.com/photos/64d3b73adf214529dc7ce783/16:9/w_3488,h_1962,c_limit/8-09-k-beauty-for-acne.jpg",
     "nick_name": "squad",
     "skin_type": "Oily/Resilient"
   },

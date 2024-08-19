@@ -20,7 +20,7 @@ const Header: React.FC = () => {
 					<Nav className="d-flex w-100 justify-content-around" >
 						<Navbar.Brand>
 							<Image
-								src={getIconPath('icon-picky')}
+								src={getIconPath('icon-brand')}
 								alt="Brand icon"
 								width={24}
 								height={24} />
