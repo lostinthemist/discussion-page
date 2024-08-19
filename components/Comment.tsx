@@ -103,7 +103,7 @@ const Comment: React.FC<CommentProps> = ({ comment }) => {
           {comment.image_urls.length > 0 && (
             <div className={commentClasses.comment_image}>
               {comment.image_urls.map((url, index) => (
-                <Image key={index} src={url} alt="Comment Image" width={100} height={100} />
+                <Image key={index} src={url} alt="Comment Image" width={150} height={150} />
               ))}
             </div>
           )}
